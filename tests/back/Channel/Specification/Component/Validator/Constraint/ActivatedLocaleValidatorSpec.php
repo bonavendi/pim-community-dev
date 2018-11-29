@@ -5,7 +5,7 @@ namespace Specification\Akeneo\Channel\Component\Validator\Constraint;
 use Akeneo\Channel\Component\Model\Locale;
 use Akeneo\Channel\Component\Model\LocaleInterface;
 use Akeneo\Channel\Component\Validator\Constraint\ActivatedLocale;
-use Akeneo\Channel\Component\Validator\Constraint\ActivatedLocaleValidator;
+use Akeneo\Channel\Component\Validator\Constraint\IsGrantedLocaleValidator;
 use Akeneo\Tool\Component\StorageUtils\Repository\IdentifiableObjectRepositoryInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -22,7 +22,7 @@ class ActivatedLocaleValidatorSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(ActivatedLocaleValidator::class);
+        $this->shouldHaveType(IsGrantedLocaleValidator::class);
     }
 
     function it_adds_violation_if_locale_as_an_entity_not_activated(
