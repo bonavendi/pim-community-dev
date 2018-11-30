@@ -1,5 +1,9 @@
 # 2.3.x
 
+## Bug fixes
+
+- PIM-7866: do not show delete icon on import/export profile if the user doesn't have the right to delete.
+
 # 2.3.19 (2018-12-03)
 
 # 2.3.18 (2018-11-28)
