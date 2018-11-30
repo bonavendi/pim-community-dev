@@ -12,7 +12,6 @@ $rules = [
     $builder->only([
         'Doctrine',
         'Symfony',
-        'Sensio\Bundle\FrameworkExtraBundle',
         'Akeneo\Tool',
         'Akeneo\Pim\Structure\Component',
         'Oro\Bundle\SecurityBundle\Annotation\AclAncestor',
@@ -31,13 +30,8 @@ $rules = [
         // TODO: linked by reference instead of id + repo + ACL
         'Akeneo\Channel\Component\Model\ChannelInterface',
 
-        // TODO form type inheritance/usage
-        // TODO: The forms are probably not used anymore
-        'Akeneo\Platform\Bundle\UIBundle\Form\Type\AsyncSelectType',
-        'Akeneo\Platform\Bundle\UIBundle\Form\Type\LightEntityType',
+        // TODO It uses the UI
         'Akeneo\Platform\Bundle\UIBundle\Provider\TranslatedLabelsProviderInterface',
-        'Akeneo\Platform\Bundle\UIBundle\Form\Subscriber\DisableFieldSubscriber',
-        'Akeneo\Platform\Bundle\UIBundle\Form\Type\TranslatableFieldType',
 
         // TODO: Used to filter in search/get action, enrichment shouldn't call something else than `/enrichment`
         'Akeneo\Pim\Enrichment\Bundle\Filter\CollectionFilterInterface',
