@@ -8,7 +8,7 @@
 
 namespace Acme\Bundle\CsvConnectorBundle;
 
-use Symfony\Component\HttpKernel\Bundle;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class AcmeCsvConnectorBundle extends Bundle
 {
