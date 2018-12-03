@@ -1,0 +1,40 @@
+acme_connector:
+  jobs:
+    custom_csv_product_import:
+      title: Custom Price Import CSV
+      import:
+        title: Price Import Step
+  steps:
+    product_processor.title: Product processor
+    import.filePath:
+      label: File path
+      help: Path of the CSV file
+
+batch_jobs:
+  custom_csv_product_import:
+    label: Custom Price Import CSV
+    import.label: Custom Price Import CSV
+
+acme:
+  form:
+    job_instance:
+      tab:
+        properties:
+          priceColumn:
+            title: Price Column Name
+            help: Column name where to find the price data
+          skuColumn:
+            title: Sku Column Name
+            help: Column name where to find the sku data
+          eanColumn:
+            title: Ean Column Name
+            help: Column name where to find the ean data
+          isbnColumn:
+            title: Isbn Column Name
+            help: Column name where to find the Isbn data
+          priceConditionColumn:
+            title: Price Condition Column Name
+            help: Column name where to find the price condition data
+          deeplinkColumn:
+            title: Deeplink Column Name
+            help: Column name where to find the deeplink data
