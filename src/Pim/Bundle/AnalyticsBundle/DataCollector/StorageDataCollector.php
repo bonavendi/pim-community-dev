@@ -25,18 +25,23 @@ class StorageDataCollector implements DataCollectorInterface
     /** @var string */
     protected $dbPassword;
 
+    /** @var string */
+    protected $dbPort;
+
     /**
      * @param string $dbHost
      * @param string $dbName
      * @param string $dbUser
      * @param string $dbPassword
+     * @param string $dbPort
      */
-    public function __construct($dbHost, $dbName, $dbUser, $dbPassword)
+    public function __construct($dbHost, $dbName, $dbUser, $dbPassword, $dbPort)
     {
         $this->dbHost = $dbHost;
         $this->dbName = $dbName;
         $this->dbUser = $dbUser;
         $this->dbPassword = $dbPassword;
+        $this->dbPort = $dbPort;
     }
 
     /**
@@ -45,7 +50,7 @@ class StorageDataCollector implements DataCollectorInterface
     public function collect()
     {
         $connection = new \PDO(
-            sprintf('mysql:dbname=%s;host=%s', $this->dbName, $this->dbHost),
+            sprintf('mysql:dbname=%s;host=%s;port:%s', $this->dbName, $this->dbHost, $this->dbPort),
             $this->dbUser,
             $this->dbPassword
         );

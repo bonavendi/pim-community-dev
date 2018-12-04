@@ -94,6 +94,7 @@ services:
             - '%database_name%'
             - '%database_user%'
             - '%database_password%'
+            - '%database_port%'
         tags:
             - { name: pim_analytics.data_collector, type: system_info_report }
             - { name: pim_analytics.data_collector, type: system_info_report }
