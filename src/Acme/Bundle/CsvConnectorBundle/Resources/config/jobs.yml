@@ -1,5 +1,5 @@
 parameters:
-    acme_connector.job_name.custom_csv_product_import: 'custom_csv_product_import_new'
+    acme_connector.job_name.custom_csv_product_import: 'custom_csv_product_import'
 
 services:
     acme_connector.job.custom_csv_product_import:
