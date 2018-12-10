@@ -50,7 +50,7 @@ class StorageDataCollector implements DataCollectorInterface
     public function collect()
     {
         $connection = new \PDO(
-            sprintf('mysql:dbname=%s;host=%s;port:%s', $this->dbName, $this->dbHost, $this->dbPort),
+            sprintf('mysql:dbname=%s;host=%s;port=%s', $this->dbName, $this->dbHost, $this->dbPort),
             $this->dbUser,
             $this->dbPassword
         );
