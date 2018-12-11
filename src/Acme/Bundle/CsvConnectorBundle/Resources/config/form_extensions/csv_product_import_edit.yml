@@ -340,3 +340,25 @@ extensions:
             readOnly: false
             label: acme.form.job_instance.tab.properties.deeplinkColumn.title
             tooltip: acme.form.job_instance.tab.properties.deeplinkColumn.help
+
+    pim-job-instance-custom-csv-product-import-edit-properties-categories-value:
+        module: pim/job/common/edit/field/text
+        parent: pim-job-instance-custom-csv-product-import-edit-global
+        position: 310
+        targetZone: properties
+        config:
+            fieldCode: configuration.categoriesValue
+            readOnly: false
+            label: acme.form.job_instance.tab.properties.categoriesValue.title
+            tooltip: acme.form.job_instance.tab.properties.categoriesValue.help
+
+    pim-job-instance-custom-csv-product-import-edit-properties-family-value:
+        module: pim/job/common/edit/field/text
+        parent: pim-job-instance-custom-csv-product-import-edit-global
+        position: 320
+        targetZone: properties
+        config:
+            fieldCode: configuration.familyValue
+            readOnly: false
+            label: acme.form.job_instance.tab.properties.familyValue.title
+            tooltip: acme.form.job_instance.tab.properties.familyValue.help

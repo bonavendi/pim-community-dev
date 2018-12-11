@@ -38,3 +38,9 @@ acme:
           deeplinkColumn:
             title: Deeplink Column Name
             help: Column name where to find the deeplink data
+          categoriesValue:
+            title: Categories Value
+            help: Value of categories field (comma separated)
+          familyValue:
+            title: Family Value
+            help: Value of family field

@@ -54,6 +54,17 @@ class CustomProductReader extends Reader implements FileReaderInterface
         $data['values'] = $this->mediaPathTransformer
             ->transform($data['values'], $this->fileIterator->getDirectoryPath());
 
+        $jobParameters = $this->stepExecution->getJobParameters();
+        $categoriesValue = $jobParameters->get('categoriesValue');
+        $familyValue = $jobParameters->get('familyValue');
+
+        if (!empty($categoriesValue)){
+            $data['categories'] = explode(',', $categoriesValue);
+        }
+        if (!empty($familyValue)) {
+            $data['family'] = $familyValue;
+        }
+
         return $data;
     }
 

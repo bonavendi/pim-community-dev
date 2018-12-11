@@ -60,6 +60,8 @@ class CustomCsvProductImport implements
                 'isbnColumn' => 'isbn',
                 'deeplinkColumn' => 'deeplink',
                 'priceConditionColumn' => 'price_condition',
+                'categoriesValue' => '',
+                'familyValue' => 'prices'
             ]
         );
     }
@@ -99,6 +101,8 @@ class CustomCsvProductImport implements
                 'isbnColumn' => new Type('string'),
                 'deeplinkColumn' => new Type('string'),
                 'priceConditionColumn' => new Type('string'),
+                'categoriesValue' => new Type('string'),
+                'familyValue' => new Type('string')
             ]
         );
         return new Collection(['fields' => $constraintFields]);
