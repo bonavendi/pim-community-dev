@@ -11,7 +11,6 @@ services:
             -
                 - '@pim_connector.step.charset_validator'
                 - '@acme_connector.step.custom_csv_product_import.import'
-                - '@pim_connector.step.csv_product.import_associations'
         tags:
             - { name: akeneo_batch.job, connector: 'Custom Connector', type: '%pim_connector.job.import_type%' }
 
