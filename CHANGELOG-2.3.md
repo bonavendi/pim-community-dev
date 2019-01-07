@@ -1,4 +1,29 @@
 # 2.3.x
+ 
+## Bug fixes
+
+- PIM-7934: Fix translations of product model import
+
+# 2.3.23 (2019-01-03)
+ 
+## Bug fixes
+
+- PIM-7899: Remove Date of Birth field
+- PIM-7926: Fix the parent property setter when "enabled comparison" is set to false in an import job definition
+
+# 2.3.22 (2018-12-21)
+
+## Bug fixes
+
+- PIM-7892: Allow to filter on active catalog locale when adding an attribute to the product export filters
+- PIM-7898: Fix tab navigation when the column is collapsed
+- PIM-7866: Do not show delete icon on import/export profile if the user doesn't have the right to delete.
+- PIM-7910: Search parent filter is now case insensitive
+- GITHUB-8482: Fix missing breadcrumbs - cheers @userz58!
+
+ ## Elasticsearch
+ 
+ - Please re-index the products and product models by launching the commands `console akeneo:elasticsearch:reset-indexes -e prod` and `pim:product:index --all -e prod`.
 
 # 2.3.21 (2018-12-07)
 
