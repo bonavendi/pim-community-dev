@@ -23,6 +23,7 @@ class PropertiesNormalizer implements NormalizerInterface, SerializerAwareInterf
 
     const FIELD_COMPLETENESS = 'completeness';
     const FIELD_IN_GROUP = 'in_group';
+    private const FIELD_PARENT = 'parent';
     const FIELD_ID = 'id';
     private const FIELD_ANCESTORS = 'ancestors';
 
@@ -54,6 +55,9 @@ class PropertiesNormalizer implements NormalizerInterface, SerializerAwareInterf
 
         $data[StandardPropertiesNormalizer::FIELD_ENABLED] = (bool) $product->isEnabled();
         $data[StandardPropertiesNormalizer::FIELD_CATEGORIES] = $product->getCategoryCodes();
+
+        $parentCode = null !== $product->getParent() ? $product->getParent()->getCode() : null;
+        $data[self::FIELD_PARENT] = $parentCode;
 
         $data[StandardPropertiesNormalizer::FIELD_GROUPS] = $product->getGroupCodes();
 
