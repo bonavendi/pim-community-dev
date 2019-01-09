@@ -267,7 +267,7 @@ settings:
         filter:
             text_area_truncate:
                 type: 'truncate'
-                length: 100
+                length: 1000
         analyzer:
             textarea_analyzer:
                 filter: ['lowercase']
