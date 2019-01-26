@@ -181,12 +181,30 @@ class Product implements ArrayConverterInterface
 
         $mappedItem = $this->mapFields($item, $options);
         $filteredItem = $this->filterFields($mappedItem, $options['with_associations']);
-        $this->validateItem($filteredItem);
+        // Custom step to allow unknown fields in the csv
+        $itemWithoutUnknownFields = $this->removeUnknownFields($filteredItem);
+        $this->validateItem($itemWithoutUnknownFields);
 
-        $mergedItem = $this->columnsMerger->merge($filteredItem);
+        $mergedItem = $this->columnsMerger->merge($itemWithoutUnknownFields);
         $convertedItem = $this->convertItem($mergedItem);
-
         return $convertedItem;
+    }
+
+    private function removeUnknownFields(array $item):array {
+        $optionalFields = array_merge(
+            ['family', 'enabled', 'categories', 'groups', 'parent'],
+            $this->attrColumnsResolver->resolveAttributeColumns(),
+            $this->getOptionalAssociationFields()
+        );
+
+        $optionalFields = array_combine($optionalFields, $optionalFields);
+        $itemKeys = array_keys($item);
+        foreach ($itemKeys as $field) {
+            if (!isset($optionalFields[$field])) {
+                unset($item[$field]);
+            }
+        }
+        return $item;
     }
 
     /**
@@ -226,9 +244,9 @@ class Product implements ArrayConverterInterface
     protected function filterFields(array $mappedItem, $withAssociations): array
     {
         if (false === $withAssociations) {
-            $isGroupAssPattern = '/^\w+'.AssociationColumnsResolver::GROUP_ASSOCIATION_SUFFIX.'$/';
-            $isProductAssPattern = '/^\w+'.AssociationColumnsResolver::PRODUCT_ASSOCIATION_SUFFIX.'$/';
-            $isProductModelAssPattern = '/^\w+'.AssociationColumnsResolver::PRODUCT_MODEL_ASSOCIATION_SUFFIX.'$/';
+            $isGroupAssPattern = '/^\w+' . AssociationColumnsResolver::GROUP_ASSOCIATION_SUFFIX . '$/';
+            $isProductAssPattern = '/^\w+' . AssociationColumnsResolver::PRODUCT_ASSOCIATION_SUFFIX . '$/';
+            $isProductModelAssPattern = '/^\w+' . AssociationColumnsResolver::PRODUCT_MODEL_ASSOCIATION_SUFFIX . '$/';
             foreach (array_keys($mappedItem) as $field) {
                 $isGroup = (1 === preg_match($isGroupAssPattern, $field));
                 $isProduct = (1 === preg_match($isProductAssPattern, $field));
@@ -241,13 +259,12 @@ class Product implements ArrayConverterInterface
 
         return $mappedItem;
     }
-
-    /**
-     * @param array $item
-     *
-     * @return array
-     */
-    protected function convertItem(array $item): array
+        /**
+         * @param array $item
+         *
+         * @return array
+         */
+        protected function convertItem(array $item): array
     {
         $convertedItem = [];
         $convertedValues = [];
@@ -279,10 +296,10 @@ class Product implements ArrayConverterInterface
         return $convertedItem;
     }
 
-    /**
-     * @param array $item
-     */
-    protected function validateItem(array $item): void
+        /**
+         * @param array $item
+         */
+        protected function validateItem(array $item): void
     {
         $requiredField = $this->attrColumnsResolver->resolveIdentifierField();
         $this->fieldChecker->checkFieldsPresence($item, [$requiredField]);
@@ -290,12 +307,12 @@ class Product implements ArrayConverterInterface
         $this->validateFieldValueTypes($item);
     }
 
-    /**
-     * @param array $item
-     *
-     * @throws StructureArrayConversionException
-     */
-    protected function validateOptionalFields(array $item): void
+        /**
+         * @param array $item
+         *
+         * @throws StructureArrayConversionException
+         */
+        protected function validateOptionalFields(array $item): void
     {
         $optionalFields = array_merge(
             ['family', 'enabled', 'categories', 'groups', 'parent'],
@@ -336,12 +353,12 @@ class Product implements ArrayConverterInterface
         }
     }
 
-    /**
-     * @param array $item
-     *
-     * @throws DataArrayConversionException
-     */
-    protected function validateFieldValueTypes(array $item): void
+        /**
+         * @param array $item
+         *
+         * @throws DataArrayConversionException
+         */
+        protected function validateFieldValueTypes(array $item): void
     {
         $stringFields = ['family', 'categories', 'groups'];
 
@@ -354,12 +371,12 @@ class Product implements ArrayConverterInterface
         }
     }
 
-    /**
-     * Returns associations fields (resolves once)
-     *
-     * @return array
-     */
-    protected function getOptionalAssociationFields(): array
+        /**
+         * Returns associations fields (resolves once)
+         *
+         * @return array
+         */
+        protected function getOptionalAssociationFields(): array
     {
         if (empty($this->optionalAssocFields)) {
             $this->optionalAssocFields = $this->assocColumnsResolver->resolveAssociationColumns();
@@ -368,14 +385,14 @@ class Product implements ArrayConverterInterface
         return $this->optionalAssocFields;
     }
 
-    /**
-     * This method filters a list of fields (attribute codes) to return only the existing attributes
-     * that are scopable or localizable.
-     *
-     * @param string[]  $attributeCodes
-     * @return string[]
-     */
-    private function filterNonLocalizableOrScopableFields(array $attributeCodes): array
+        /**
+         * This method filters a list of fields (attribute codes) to return only the existing attributes
+         * that are scopable or localizable.
+         *
+         * @param string[]  $attributeCodes
+         * @return string[]
+         */
+        private function filterNonLocalizableOrScopableFields(array $attributeCodes): array
     {
         $result = [];
         if (count($attributeCodes) === 0) {
